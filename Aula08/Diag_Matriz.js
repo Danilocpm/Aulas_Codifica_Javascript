@@ -15,4 +15,5 @@ for(let i = 0; i < n; i++) {
         
 }
 
-console.table(diagonal)
+console.table(matriz)
+console.log(diagonal)
