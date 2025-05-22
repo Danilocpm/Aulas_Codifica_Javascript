@@ -66,8 +66,7 @@ let Apothecary_Diaries = new anime('Apothecary Diaries', 2, 9.0)
 console.log(frieren.mostrarAnime()) // Utilizando o objeto e sua função interna
 console.log(Apothecary_Diaries.mostrarAnime())
 
-// Em objetos não possuimos index então para percorrer eles em um array usamos
-// As seguintes funções de array
+// Em objetos não possuimos index então para percorrer eles usamos a função for in
 
 // Metodo in (o valor key pode ser qualquer valor)
 let personagens = [{nome: 'Killua'}, 'Minato', 'Ace']
@@ -76,6 +75,8 @@ for(let key in personagens) {
     console.log(personagens[key])
 }
 
+
+// Em arrays e outros metodos iteraveis podemos usar a função for of
 // Metodo of (para obsjetos e arrays iteraveis)
 
 let palavra = 'palavra'
