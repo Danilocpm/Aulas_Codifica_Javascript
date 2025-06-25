@@ -38,12 +38,38 @@ function Fatorial(n) {
 
 }
 
-const fatorial = memoize(Fatorial)
+const fastFatorial = memoize(function fatorial(n) { // const com a versao utilizando memoize
+    if(n === 0)  { 
+        return 1
+    } 
+    else {
+        return n * fastFatorial(n - 1) // recursividade na funcao com memoize
 
-console.time("fatorial") // inicia um timer
-console.log(fatorial(5)) // calcula e guarda
-console.timeEnd("fatorial"); // encerra o timer
+    }  
+})
 
-console.time("fatorial") 
-console.log(fatorial(5)) // puxando do cache
-console.timeEnd("fatorial"); 
+// Eu tentei ao maximo achar um jeito de validar a diferenca do tempo entre eles...
+// entre usar console.time e console.timeend acaba que pesquisando o performance.now() parece melhor
+// mas ainda assim a primeira chamada tende a ter uma desvantagem de ms entao ficou legal so para comparar realmente a 1 chamada x 2 chamada
+
+
+// Medindo Fatorial sem memoize
+const start1 = performance.now();
+console.log(Fatorial(40));
+const end1 = performance.now();
+console.log(`Fatorial sem memoize: ${(end1 - start1).toFixed(3)} ms`);
+
+// Medindo Fatorial com memoize - primeira chamada
+const start2 = performance.now();
+console.log(fastFatorial(40));
+const end2 = performance.now();
+console.log(`Fatorial com memoize (1ª chamada): ${(end2 - start2).toFixed(3)} ms`);
+
+// Medindo Fatorial com memoize - segunda chamada (cache)
+const start3 = performance.now();
+console.log(fastFatorial(40));
+const end3 = performance.now();
+console.log(`Fatorial com memoize (2ª chamada): ${(end3 - start3).toFixed(3)} ms`);
+
+
+
