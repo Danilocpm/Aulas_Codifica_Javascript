@@ -5,7 +5,7 @@
 
 // Para a funcao fatorial por ser apenas um arg nao precisava por exemplo da key e seria possivel pesquisar o args direto no if(in) mas como e para ser uma funcao reaproveitavel, decidi usar o ...args e a key extra
 function memoize(fn) {
-    const cache = {} // cria o array const cache
+    const cache = {} // cria um objeto const cache
 
     return function(...args) { // recebe um array de argumentos apesar de que aqui apenas args serve
 
@@ -15,13 +15,13 @@ function memoize(fn) {
     // 1- Arrays/objetos não são chaves válidas diretamente
     // 2- Garante que chamadas iguais gerem a mesma chave no cache, evitando duplicatas infinitas
 
-    if(key in cache) { // if valida se o valor de key esta em algum lugar do cache, iterando pelo array de cache
+    if(key in cache) { // if valida se o valor de key esta em algum lugar do cache, iterando pelo objeto de cache
         return cache[key] // se sim retorna o valor anteriormente computado e encerra a funcao
     }
 
     // se nao houver ja registrado
     const result = fn.apply(this,args) // const com a funcao e o argumento que acabou de rodar | apply e this sendo usado por boa pratica e permitir o reaproveitamente futuro
-    cache[key] = result // armazena no array de cache o resultado que acabou de ser capturado
+    cache[key] = result // armazena no objeto de cache o resultado que acabou de ser capturado
     return result // retorna o resultado
     }
 
